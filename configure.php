@@ -183,11 +183,11 @@ $useWpMetaBox = confirm('Include the wp-meta-box package?', true);
 writeln('------');
 writeln("Author     : {$authorName} ({$authorUsername}, {$authorEmail})");
 writeln("Vendor     : {$vendorName} ({$vendorSlug})");
-writeln("Plugin     : {$pluginSlug} <{$description}>");
+writeln("Plugin     : {$pluginName} <{$description}>");
 writeln("Namespace  : {$vendorNamespace}\\{$className}");
 writeln("Class name : {$className}");
 writeln('---');
-writeln('Packages & Utilities');
+writeln('Composer Packages & Utilities');
 writeln('Use Laravel/Pint      : '.($useLaravelPint ? 'yes' : 'no'));
 writeln('Use WP Meta Box       : '.($useWpMetaBox ? 'yes' : 'no'));
 writeln('Use WP Settings       : '.($useWpSettings ? 'yes' : 'no'));
@@ -200,8 +200,6 @@ if (! confirm('Modify files?', true)) {
 }
 
 $files = (str_starts_with(strtoupper(PHP_OS), 'WIN') ? replaceForWindows() : replaceForAllOtherOSes());
-
-writeln(implode("n", $files));
 
 foreach ($files as $file) {
     replace_in_file($file, [
@@ -219,13 +217,13 @@ foreach ($files as $file) {
         'skeleton' => $pluginSlug,
         'variable' => $variableName,
         ':plugin_description' => $description,
-        'SKELETON_CONSTANT_PREFIX_' => strtoupper(title_snake($pluginSlug)).'_',
+        'PLUGIN_CONSTANT_PREFIX' => strtoupper(title_snake($pluginSlug)),
         'plugin_function_name' => lcfirst($className),
     ]);
 
     match (true) {
         str_contains($file, determineSeparator('src/Skeleton.php')) => rename($file, determineSeparator('./src/'.$className.'.php')),
-        str_contains($file, 'README.md') => remove_readme_paragraphs($file),
+        // str_contains($file, 'README.md') => remove_readme_paragraphs($file),
         default => [],
     };
 }

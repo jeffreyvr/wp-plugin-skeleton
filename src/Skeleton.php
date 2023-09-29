@@ -28,7 +28,7 @@ class Skeleton
         load_plugin_textdomain(
             ':plugin_textdomain',
             false,
-            dirname(plugin_basename(SKELETON_CONSTANT_PREFIX_PLUGIN_FILE)).'/languages/'
+            dirname(plugin_basename(PLUGIN_CONSTANT_PREFIX_PLUGIN_FILE)).'/languages/'
         );
     }
 }
