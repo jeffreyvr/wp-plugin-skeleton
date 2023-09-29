@@ -1,0 +1,40 @@
+{
+  "name": ":vendor_slug/:plugin_slug",
+  "description": ":plugin_description",
+  "type": "wordpress-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": ":author_name",
+      "email": "author@domain.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "automattic/jetpack-autoloader": "^2.10",
+    "jeffreyvanrossum/wp-settings": "^1.0",
+    "jeffreyvanrossum/wp-meta-box": "dev-main"
+  },
+  "autoload": {
+    "psr-4": {
+      "VendorName\\Skeleton\\": "src/"
+    }
+  },
+  "config": {
+    "platform": {
+      "php": "8.0"
+    },
+    "allow-plugins": {
+      "automattic/jetpack-autoloader": true
+    }
+  },
+  "require-dev": {
+    "laravel/pint": "^1.2"
+  },
+  "scripts": {
+    "format": [
+      "./vendor/bin/pint"
+    ]
+  }
+}
